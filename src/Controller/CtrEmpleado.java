@@ -7,6 +7,8 @@ import View.FrmEmpleado;
 
 public class CtrEmpleado {
 
+	//holaaaa
+	
 	 private ArrayList<Empleado> empleados;
 	 private int indiceActual;
 	 private FrmEmpleado framePrincipal;
