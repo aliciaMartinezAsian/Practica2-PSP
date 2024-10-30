@@ -7,7 +7,7 @@ import View.FrmEmpleado;
 
 public class CtrEmpleado {
 
-	//holaaaa
+	//Tendrá los atributos: inicial (al primer empleado) y actual (al empleado a mostrar)
 	
 	 private ArrayList<Empleado> empleados;
 	 private int indiceActual;
