@@ -79,7 +79,7 @@ public class CtrEmpleado {
 
 			// Mostrar el empleado actual
 			Empleado empleado = getEmpleadoActual();
-			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getFechaNacimiento(), empleado.getSueldo(),empleado.getSueldoMax());
+			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getSueldo(), empleado.getSueldoMax(),empleado.getFechaNacimiento());
 			framePrincipal.setAltaVisible(false);
 
 			// Desactivar/activar botones según la posición

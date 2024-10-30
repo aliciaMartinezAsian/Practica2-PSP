@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 
 import Controller.CtrEmpleado;
 import Model.Empleado;
+import Model.FechaNacimientoInvalidaException;
+import Model.SuledoInvalidoException;
+import Model.SuledoMaximoInvalidoException;
 
 public class FrmEmpleado extends JFrame {
 
@@ -95,11 +98,14 @@ public class FrmEmpleado extends JFrame {
         return nombreField.getText();
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimientoField.getText();
     }
 
-    public double getSalario() {
+    public double getSueldoMax() {
+    	return 0.0;//Double.parseDouble(salarioMaxField.getText());
+    }
+    public double getSueldo() {
         return Double.parseDouble(salarioField.getText());
     }
 
@@ -143,9 +149,22 @@ public class FrmEmpleado extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Código para agregar un nuevo empleado
                 String nombre = getNombre();
-                String fechaNacimiento = getFechaNacimiento();
-                double salario = getSalario();
-                ctr.agregarEmpleado(new Empleado(nombre, fechaNacimiento, salario));
+                LocalDate fechaNacimiento = getFechaNacimiento();
+                double sueldo = getSueldo();
+                double sueldoMax=getSueldoMax();
+                
+                try {
+					ctr.agregarEmpleado(new Empleado(nombre, sueldo, sueldoMax,fechaNacimiento));
+				} catch (SuledoMaximoInvalidoException e1) {
+				
+					e1.printStackTrace();
+				} catch (SuledoInvalidoException e1) {
+					
+					e1.printStackTrace();
+				} catch (FechaNacimientoInvalidaException e1) {
+					
+					e1.printStackTrace();
+				}
                 ctr.mostrarEmpleadoActual();
             }
         });
