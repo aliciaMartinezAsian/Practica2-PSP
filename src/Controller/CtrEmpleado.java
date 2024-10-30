@@ -1,5 +1,7 @@
 package Controller;
 
+import java.sql.SQLSyntaxErrorException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Model.Empleado;
@@ -9,9 +11,11 @@ public class CtrEmpleado {
 
 	//Tendrá los atributos: inicial (al primer empleado) y actual (al empleado a mostrar)
 	
-	 private ArrayList<Empleado> empleados;
+	 private static ArrayList<Empleado> empleados;
 	 private int indiceActual;
 	 private FrmEmpleado framePrincipal;
+	 
+	 
 	    public CtrEmpleado(FrmEmpleado framePrincipal) {
 	    	
 	    	//Asocio la ventana principal para acceder a los botones desde el ctrll
@@ -19,15 +23,25 @@ public class CtrEmpleado {
 	        empleados = new ArrayList<>();
 	        indiceActual = 0;
 	        
-	        // Precargamos 5 empleados
-	        empleados.add(new Empleado("Juan Pérez", "1990-01-15", 30000.0));
-	        empleados.add(new Empleado("María López", "1985-05-10", 32000.0));
-	        empleados.add(new Empleado("Carlos García", "1978-12-22", 28000.0));
-	        empleados.add(new Empleado("Ana Fernández", "1993-03-03", 35000.0));
-	        empleados.add(new Empleado("Luis Sánchez", "2000-11-01", 25000.0));
-
+	        try {
+	        	if(this.empleados.isEmpty()) {
+	        		// Precargamos 5 empleados
+	    	        empleados.add(new Empleado("Juan", 3000.00, 5000.00, LocalDate.of(1990, 5, 15)));
+	                empleados.add(new Empleado("María", 3500.00, 6000.00, LocalDate.of(1985, 8, 20)));
+	                empleados.add(new Empleado("Pedro", 4000.00, 7000.00, LocalDate.of(1992, 11, 30)));
+	                empleados.add(new Empleado("Ana", 2800.00, 4500.00, LocalDate.of(1995, 3, 10)));
+	                empleados.add(new Empleado("Luis", 3200.00, 5500.00, LocalDate.of(1988, 6, 25)));
+	        	}
+	        
+	        }catch(Exception e) {
+	        	System.err.println(e.getMessage());
+	        }
 	    }
 
+	    public void reiniciarPosicionamiento() {
+	    	this.indiceActual=0;
+	    }
+	    
 	    public Empleado getEmpleadoActual() {
 	        return empleados.get(indiceActual);
 	    }
@@ -54,25 +68,19 @@ public class CtrEmpleado {
 
 	    public void agregarEmpleado(Empleado empleado) {
 	        empleados.add(empleado);
-	        indiceActual = empleados.size(); // Posiciona en el nuevo empleado
+	         // Posiciona en el nuevo empleado
 	    }
 
-	    public boolean hayCampoNuevo() {
+	    public boolean estamosAlFinal() {
 	        return indiceActual == empleados.size(); // Indica si estamos en un "nuevo" registro
 	    }
 
 		public void mostrarEmpleadoActual() {
-			
-			if (hayCampoNuevo()) {
-				// Estamos en un nuevo registro
-				framePrincipal.setEmpleadoData("", "", 0);
-				framePrincipal.setAltaVisible(true);
-			} else {
-				// Mostrar el empleado actual
-				Empleado empleado = getEmpleadoActual();
-				framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getFechaNacimiento(), empleado.getSalario());
-				framePrincipal.setAltaVisible(false);
-			}
+
+			// Mostrar el empleado actual
+			Empleado empleado = getEmpleadoActual();
+			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getFechaNacimiento(), empleado.getSueldo(),empleado.getSueldoMax());
+			framePrincipal.setAltaVisible(false);
 
 			// Desactivar/activar botones según la posición
 			framePrincipal.setAnteriorEnabled(!esPrimerEmpleado());

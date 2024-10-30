@@ -17,7 +17,7 @@ public class Empleado {
 	private String nombre;
 	private LocalDate fechaNacimiento;
 
-	public Empleado(String nombre, double sueldo, double sueldoMax, LocalDate fechaNacimiento) {
+	public Empleado(String nombre, double sueldo, double sueldoMax, LocalDate fechaNacimiento) throws SuledoMaximoInvalidoException, SuledoInvalidoException, FechaNacimientoInvalidaException {
 
 		contadorEmpleados++; // Incrementar el contador
 		this.numeroEmpleado = contadorEmpleados; // Asignar el número de empleado
@@ -25,27 +25,24 @@ public class Empleado {
 		setSueldoMax(sueldoMax);
 		setSueldo(sueldo);
 		setNombre(nombre);
-
+		setFechaNacimiento(fechaNacimiento);
+		
 	}
 
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) throws FechaNacimientoInvalidaException {
 		LocalDate fechaMax = LocalDate.of(2015, 12, 31);
 		LocalDate fechaMin = LocalDate.of(1900, 01, 01);
 
 		if (fechaNacimiento.compareTo(fechaMin) >= 0 && fechaNacimiento.compareTo(fechaMax) <= 0) {
 			this.fechaNacimiento = fechaNacimiento;
 		} else {
-			if (fechaNacimiento.compareTo(fechaMin) < 0) {
-				this.fechaNacimiento = fechaMin;
-			} else {
-				if (fechaNacimiento.compareTo(fechaMax) > 0) {
-					this.fechaNacimiento = fechaMax;
-				}
-			}
+			
+			throw new FechaNacimientoInvalidaException();
+			
 		}
 
 	}
@@ -54,13 +51,13 @@ public class Empleado {
 		return sueldo;
 	}
 
-	public void setSueldo(double sueldo) {
+	public void setSueldo(double sueldo) throws SuledoInvalidoException {
 
 		if (this.sueldoMax < sueldo)
-			this.sueldo = this.sueldoMax;
+			throw new SuledoInvalidoException("El sueldo no puede ser mayor al sueldo maximo");
 		else {
 			if (sueldo < 0)
-				this.sueldo = -sueldo;
+				throw new SuledoInvalidoException("El sueldo debe ser una cantidad positiva");
 			else
 				this.sueldo = sueldo;
 		}
@@ -71,9 +68,9 @@ public class Empleado {
 		return sueldoMax;
 	}
 
-	public void setSueldoMax(double sueldoMax) {
+	public void setSueldoMax(double sueldoMax) throws SuledoMaximoInvalidoException {
 		if (sueldoMax < 0)
-			this.sueldoMax = -sueldoMax;
+			throw new SuledoMaximoInvalidoException("El sueldo maximo debe ser positivo");
 		else
 			this.sueldoMax = sueldoMax;
 	}

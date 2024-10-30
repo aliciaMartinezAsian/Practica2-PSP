@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -83,10 +84,10 @@ public class FrmEmpleado extends JFrame {
     }
 
     // Métodos para actualizar los campos de texto
-    public void setEmpleadoData(String nombre, String fechaNacimiento, double salario) {
+    public void setEmpleadoData(String nombre, double sueldo, double sueldoMax, LocalDate fechaNacimiento) {
         nombreField.setText(nombre);
-        fechaNacimientoField.setText(fechaNacimiento);
-        salarioField.setText(String.valueOf(salario));
+        fechaNacimientoField.setText(fechaNacimiento.toString());
+        salarioField.setText(String.valueOf(sueldo));
     }
 
     // Métodos para recoger la información de los campos de texto
