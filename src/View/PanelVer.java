@@ -29,7 +29,7 @@ public class PanelVer extends JPanel {
         add(nombre);
         
         nombre.setBounds(28,30,50,20);
-        nombreField.setBounds(80,30,100,20);
+        nombreField.setBounds(85,30,100,20);
        
         JLabel fecha = new JLabel("Fecha de nacimiento:");
         fechaField = new JTextField(20);
@@ -38,7 +38,7 @@ public class PanelVer extends JPanel {
         add(fechaField);
         
         fecha.setBounds(200,28,150,20);
-        fechaField.setBounds(320,28,80,20);
+        fechaField.setBounds(330,28,80,20);
         
         JLabel sueldo = new JLabel("Sueldo:");
         sueldoField = new JTextField(20);
@@ -47,7 +47,7 @@ public class PanelVer extends JPanel {
         add(sueldo);
         
         sueldo.setBounds(28,60,80,20);
-        sueldoField.setBounds(70,60,100,20);
+        sueldoField.setBounds(80,60,100,20);
         
         JLabel sueldoMax = new JLabel("Sueldo máximo:");
         sueldoMaxField = new JTextField(20);
@@ -72,10 +72,10 @@ public class PanelVer extends JPanel {
         add(btnSiguiente);
         add(btnUltimo);
         
-        btnPrimero.setBounds(30,125,75,27);
-        btnSiguiente.setBounds(120,125,85,27);
-        btnAnterior.setBounds(220,125,75,27);
-        btnUltimo.setBounds(310,125,75,27);
+        btnPrimero.setBounds(30,125,90,27);
+        btnSiguiente.setBounds(130,125,90,27);
+        btnAnterior.setBounds(230,125,90,27);
+        btnUltimo.setBounds(330,125,90,27);
         
         initListeners();
         

@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 import Controller.CtrEmpleado;
 import Model.Empleado;
 import Model.FechaNacimientoInvalidaException;
-import Model.SuledoInvalidoException;
-import Model.SuledoMaximoInvalidoException;
+import Model.SueldoInvalidoException;
+import Model.SueldoMaximoInvalidoException;
 
 public class PanelAlta extends JPanel {
     private JButton btnGuardar, btnCancelar;
@@ -29,7 +29,7 @@ public class PanelAlta extends JPanel {
         add(nombre);
         
         nombre.setBounds(28,30,50,20);
-        nombreField.setBounds(80,30,100,20);
+        nombreField.setBounds(85,30,100,20);
        
         JLabel fecha = new JLabel("Fecha de nacimiento:");
         fechaField = new JTextField(20);
@@ -38,7 +38,7 @@ public class PanelAlta extends JPanel {
         add(fechaField);
         
         fecha.setBounds(200,28,150,20);
-        fechaField.setBounds(320,28,80,20);
+        fechaField.setBounds(330,28,80,20);
         
         JLabel sueldo = new JLabel("Sueldo:");
         sueldoField = new JTextField(20);
@@ -47,7 +47,7 @@ public class PanelAlta extends JPanel {
         add(sueldo);
         
         sueldo.setBounds(28,60,80,20);
-        sueldoField.setBounds(70,60,100,20);
+        sueldoField.setBounds(80,60,100,20);
         
         JLabel sueldoMax = new JLabel("Sueldo máximo:");
         sueldoMaxField = new JTextField(20);
@@ -66,7 +66,7 @@ public class PanelAlta extends JPanel {
         add(btnCancelar);
         
         btnGuardar.setBounds(120,125,85,27);
-        btnCancelar.setBounds(220,125,75,27);
+        btnCancelar.setBounds(220,125,85,27);
         
         
         initListeners();
@@ -98,10 +98,10 @@ public class PanelAlta extends JPanel {
 		try {
 			nuevoEmpleado = new Empleado(nombre, sueldo, sueldoMax, fecha);
 			ctr.agregarEmpleado(nuevoEmpleado);
-		} catch (SuledoMaximoInvalidoException e) {
+		} catch (SueldoMaximoInvalidoException e) {
 			System.err.println("Sueldo máximo no válido");
 			System.out.println(e.getMessage());
-		} catch (SuledoInvalidoException e1) {
+		} catch (SueldoInvalidoException e1) {
 			System.err.println("Sueldo no válido");
 			System.out.println(e1.getMessage());
 		} catch (FechaNacimientoInvalidaException e2) {
