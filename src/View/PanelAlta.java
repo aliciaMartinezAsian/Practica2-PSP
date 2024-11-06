@@ -13,7 +13,7 @@ public class PanelAlta extends JPanel {
     private JTextField nombreField, puestoField, salarioField;
 
     public PanelAlta() {
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
         
         add(new JLabel("Nombre:"));
         nombreField = new JTextField(20);

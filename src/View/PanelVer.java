@@ -14,23 +14,27 @@ public class PanelVer extends JPanel {
     private ArrayList<Empleado> empleados;
     private int indiceActual = 0;
     
-    private JTextField nombreField, puestoField, salarioField;
+    private JTextField nombreField, sueldoField, sueldoMaxField, fechaField;
     
     public PanelVer() {
         empleados = new ArrayList<>();
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 2));
         
         add(new JLabel("Nombre:"));
         nombreField = new JTextField(20);
         add(nombreField);
         
-        add(new JLabel("Puesto:"));
-        puestoField = new JTextField(20);
-        add(puestoField);
+        add(new JLabel("Sueldo:"));
+        sueldoField = new JTextField(20);
+        add(sueldoField);
         
-        add(new JLabel("Salario:"));
-        salarioField = new JTextField(20);
-        add(salarioField);
+        add(new JLabel("Sueldo máximo:"));
+        sueldoMaxField = new JTextField(20);
+        add(sueldoMaxField);
+        
+        add(new JLabel("Fecha de nacimiento:"));
+        fechaField = new JTextField(20);
+        add(fechaField);
 
         JButton btnPrimero = new JButton("Primero");
         btnPrimero.addActionListener(e -> mostrarEmpleado(0));
@@ -53,7 +57,9 @@ public class PanelVer extends JPanel {
         if (indice >= 0 && indice < empleados.size()) {
             Empleado empleado = empleados.get(indice);
             nombreField.setText(empleado.getNombre());
-//            salarioField.setText(String.valueOf(empleado.getSalario()));
+            sueldoField.setText(String.valueOf(empleado.getSueldo()));
+            sueldoMaxField.setText(String.valueOf(empleado.getSueldoMax()));
+            fechaField.setText(String.valueOf(empleado.getFechaNacimiento()));
             indiceActual = indice;
         }
     }

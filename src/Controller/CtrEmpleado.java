@@ -1,11 +1,10 @@
 package Controller;
 
-import java.sql.SQLSyntaxErrorException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Model.Empleado;
-import View.FrmEmpleado;
+import View.FrmPrincipal;
 
 public class CtrEmpleado {
 
@@ -13,10 +12,10 @@ public class CtrEmpleado {
 	
 	 private static ArrayList<Empleado> empleados;
 	 private int indiceActual;
-	 private FrmEmpleado framePrincipal;
+	 private FrmPrincipal framePrincipal;
 	 
 	 
-	    public CtrEmpleado(FrmEmpleado framePrincipal) {
+	    public CtrEmpleado(FrmPrincipal framePrincipal) {
 	    	
 	    	//Asocio la ventana principal para acceder a los botones desde el ctrll
 	    	this.framePrincipal=framePrincipal;
@@ -75,16 +74,16 @@ public class CtrEmpleado {
 	        return indiceActual == empleados.size(); // Indica si estamos en un "nuevo" registro
 	    }
 
-		public void mostrarEmpleadoActual() {
-
-			// Mostrar el empleado actual
-			Empleado empleado = getEmpleadoActual();
-			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getSueldo(), empleado.getSueldoMax(),empleado.getFechaNacimiento());
-			framePrincipal.setAltaVisible(false);
-
-			// Desactivar/activar botones según la posición
-			framePrincipal.setAnteriorEnabled(!esPrimerEmpleado());
-			framePrincipal.setSiguienteEnabled(!esUltimoEmpleado());
-		}
+//		public void mostrarEmpleadoActual() {
+//
+//			// Mostrar el empleado actual
+//			Empleado empleado = getEmpleadoActual();
+//			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getSueldo(), empleado.getSueldoMax(),empleado.getFechaNacimiento());
+//			framePrincipal.setAltaVisible(false);
+//
+//			// Desactivar/activar botones según la posición
+//			framePrincipal.setAnteriorEnabled(!esPrimerEmpleado());
+//			framePrincipal.setSiguienteEnabled(!esUltimoEmpleado());
+//		}
 
 }

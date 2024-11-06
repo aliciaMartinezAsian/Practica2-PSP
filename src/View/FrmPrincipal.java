@@ -34,14 +34,9 @@ public class FrmPrincipal extends JFrame {
 
        
         panelVer = new PanelVer();
-        panelVer.setBounds(20, 0, 468, 222);
         panelAlta = new PanelAlta();
         panelAcercaDe = new PanelAcercaDe();
-        contentPane.setLayout(null);
-
         
-        contentPane.add(panelVer, BorderLayout.CENTER);
-        panelVer.setLayout(new FlowLayout(FlowLayout.LEFT, 5));
         
         initListeners();
         
@@ -56,7 +51,8 @@ public class FrmPrincipal extends JFrame {
 
     private void showPanel(JPanel panel) {
         contentPane.removeAll();
-        contentPane.add(panel, BorderLayout.CENTER);
+        contentPane.setLayout(panel.getLayout());
+        contentPane.add(panel);
         contentPane.revalidate();
         contentPane.repaint();
     }

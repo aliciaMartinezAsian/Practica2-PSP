@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Empleado {
 	/*- Número de empleado: generado por el sistema de forma creciente desde
-	- Fecha de nacimiento, de tipo GregorianCalendar.
+	- Fecha de nacimiento, de tipo GregorianCalendar (para nosotros LocalDate).
 	- Sueldo de tipo real.
 	- Sueldo máximo, de tipo real.
-	- Otro de libre elección.*/
+	- Otro de libre elección (para nosotros nombre).*/
 
 	private static int contadorEmpleados = 0; // Contador de empleados
 	private int numeroEmpleado; // Número de empleado
@@ -86,7 +86,7 @@ public class Empleado {
 	@Override
 	public String toString() {
 		return "Empleado [numeroEmpleado=" + numeroEmpleado + ", sueldo=" + sueldo + ", sueldoMax=" + sueldoMax
-				+ ", nombre=" + nombre + "]";
+				+ ", nombre=" + nombre + " fecha de nacimiento= " + fechaNacimiento + "]";
 	}
 
 }
