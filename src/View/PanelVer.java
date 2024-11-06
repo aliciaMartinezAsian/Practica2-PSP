@@ -14,43 +14,80 @@ public class PanelVer extends JPanel {
     private ArrayList<Empleado> empleados;
     private int indiceActual = 0;
     
+    private JButton btnPrimero, btnAnterior, btnSiguiente, btnUltimo;
+    
     private JTextField nombreField, sueldoField, sueldoMaxField, fechaField;
     
     public PanelVer() {
         empleados = new ArrayList<>();
-        setLayout(new GridLayout(5, 2));
+        setLayout(null);
         
-        add(new JLabel("Nombre:"));
+        JLabel nombre = new JLabel("Nombre:");
         nombreField = new JTextField(20);
+        
         add(nombreField);
+        add(nombre);
         
-        add(new JLabel("Sueldo:"));
+        nombre.setBounds(28,30,50,20);
+        nombreField.setBounds(80,30,100,20);
+       
+        JLabel fecha = new JLabel("Fecha de nacimiento:");
+        fechaField = new JTextField(20);
+        
+        add(fecha);
+        add(fechaField);
+        
+        fecha.setBounds(200,28,150,20);
+        fechaField.setBounds(320,28,80,20);
+        
+        JLabel sueldo = new JLabel("Sueldo:");
         sueldoField = new JTextField(20);
-        add(sueldoField);
         
-        add(new JLabel("Sueldo máximo:"));
+        add(sueldoField);
+        add(sueldo);
+        
+        sueldo.setBounds(28,60,80,20);
+        sueldoField.setBounds(70,60,100,20);
+        
+        JLabel sueldoMax = new JLabel("Sueldo máximo:");
         sueldoMaxField = new JTextField(20);
+        
+        add(sueldoMax);
         add(sueldoMaxField);
         
-        add(new JLabel("Fecha de nacimiento:"));
-        fechaField = new JTextField(20);
-        add(fechaField);
+        sueldoMax.setBounds(200,60,100,20);
+        sueldoMaxField.setBounds(300,60,100,20);
 
-        JButton btnPrimero = new JButton("Primero");
-        btnPrimero.addActionListener(e -> mostrarEmpleado(0));
-        JButton btnAnterior = new JButton("Anterior");
-        btnAnterior.addActionListener(e -> mostrarEmpleado(indiceActual - 1));
-        JButton btnSiguiente = new JButton("Siguiente");
-        btnSiguiente.addActionListener(e -> mostrarEmpleado(indiceActual + 1));
-        JButton btnUltimo = new JButton("Último");
-        btnUltimo.addActionListener(e -> mostrarEmpleado(empleados.size() - 1));
+        btnPrimero = new JButton("Primero");
+        
+        btnAnterior = new JButton("Anterior");
+        
+        btnSiguiente = new JButton("Siguiente");
+        
+        btnUltimo = new JButton("Último");
+       
         
         add(btnPrimero);
         add(btnAnterior);
         add(btnSiguiente);
         add(btnUltimo);
         
+        btnPrimero.setBounds(30,125,75,27);
+        btnSiguiente.setBounds(120,125,85,27);
+        btnAnterior.setBounds(220,125,75,27);
+        btnUltimo.setBounds(310,125,75,27);
+        
+        initListeners();
+        
+   
         if (!empleados.isEmpty()) mostrarEmpleado(0);
+    }
+    
+    private void initListeners() {
+    	btnPrimero.addActionListener(e -> mostrarEmpleado(0));
+    	btnAnterior.addActionListener(e -> mostrarEmpleado(indiceActual - 1));
+    	btnSiguiente.addActionListener(e -> mostrarEmpleado(indiceActual + 1));
+    	btnUltimo.addActionListener(e -> mostrarEmpleado(empleados.size() - 1));
     }
 
     public void mostrarEmpleado(int indice) {

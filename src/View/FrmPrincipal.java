@@ -30,13 +30,16 @@ public class FrmPrincipal extends JFrame {
        
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout()); // Añadir BorderLayout aquí para la correcta visualización
+        setContentPane(contentPane); // Importante: establecer el contentPane en el JFrame
 
-       
+        // Inicializar paneles
         panelVer = new PanelVer();
         panelAlta = new PanelAlta();
         panelAcercaDe = new PanelAcercaDe();
         
+        // Añadir el primer panel por defecto
+        contentPane.add(panelVer, BorderLayout.CENTER);
         
         initListeners();
         
@@ -51,8 +54,7 @@ public class FrmPrincipal extends JFrame {
 
     private void showPanel(JPanel panel) {
         contentPane.removeAll();
-        contentPane.setLayout(panel.getLayout());
-        contentPane.add(panel);
+        contentPane.add(panel, BorderLayout.CENTER);
         contentPane.revalidate();
         contentPane.repaint();
     }

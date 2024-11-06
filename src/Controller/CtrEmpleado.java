@@ -12,13 +12,12 @@ public class CtrEmpleado {
 	
 	 private static ArrayList<Empleado> empleados;
 	 private int indiceActual;
-	 private FrmPrincipal framePrincipal;
 	 
 	 
-	    public CtrEmpleado(FrmPrincipal framePrincipal) {
+	    public CtrEmpleado() {
 	    	
 	    	//Asocio la ventana principal para acceder a los botones desde el ctrll
-	    	this.framePrincipal=framePrincipal;
+	    	
 	        empleados = new ArrayList<>();
 	        indiceActual = 0;
 	        
