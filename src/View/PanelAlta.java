@@ -9,10 +9,10 @@ import javax.swing.JTextField;
 
 import Model.Empleado;
 
-public class FrmPanelAlta extends JPanel {
+public class PanelAlta extends JPanel {
     private JTextField nombreField, puestoField, salarioField;
 
-    public FrmPanelAlta() {
+    public PanelAlta() {
         setLayout(new GridLayout(4, 2));
         
         add(new JLabel("Nombre:"));

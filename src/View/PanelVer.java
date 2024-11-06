@@ -10,13 +10,13 @@ import javax.swing.JTextField;
 
 import Model.Empleado;
 
-public class FrmPanelVer extends JPanel {
+public class PanelVer extends JPanel {
     private ArrayList<Empleado> empleados;
     private int indiceActual = 0;
     
     private JTextField nombreField, puestoField, salarioField;
     
-    public FrmPanelVer() {
+    public PanelVer() {
         empleados = new ArrayList<>();
         setLayout(new GridLayout(4, 2));
         

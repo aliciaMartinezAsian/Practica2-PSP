@@ -1,64 +1,64 @@
 package View;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class FrmPrincipal extends JFrame {
+    
+    public PanelVer panelVer;
+    public PanelAlta panelAlta;
+    public PanelAcercaDe panelAcercaDe;
+    private MenuBar menuBar;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
-	private FrmPanelVer panelVer;
-    private FrmPanelAlta panelAlta;
-    private FrmPanelAcercaDe panelAcercaDe;
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	
-	private JFrame frame;
+    public FrmPrincipal() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        setResizable(false);
+        
+        setTitle("Gestión de Empleados");
+        setSize(500, 300);
+        
+        menuBar = new MenuBar();
+        setJMenuBar(menuBar);
 
-	public FrmPrincipal() {
-		frame = this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		setTitle("Gestión de Empleados");
-        setSize(500,300);
+       
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
 
-		setContentPane(contentPane);
-		
+       
+        panelVer = new PanelVer();
+        panelVer.setBounds(20, 0, 468, 222);
+        panelAlta = new PanelAlta();
+        panelAcercaDe = new PanelAcercaDe();
+        contentPane.setLayout(null);
 
-	        panelVer = new FrmPanelVer();
-	        panelAlta = new FrmPanelAlta();
-	        panelAcercaDe = new FrmPanelAcercaDe();
-	        setJMenuBar();
-
-	       
-	        this.setVisible(true);
-	}
-	public void setJMenuBar() {
-		
-		JMenuBar menuBar = new MenuBar(this);
-		this.add(menuBar);
-		
-	}
-	
-	public void showPanelVer() {
-        setContentPane(panelVer);
-        revalidate();
-        repaint();
+        
+        contentPane.add(panelVer, BorderLayout.CENTER);
+        panelVer.setLayout(new FlowLayout(FlowLayout.LEFT, 5));
+        
+        initListeners();
+        
+        setVisible(true);
     }
 
-    public void showPanelAlta() {
-        setContentPane(panelAlta);
-        revalidate();
-        repaint();
+    private void initListeners() {
+        menuBar.verItem.addActionListener(e -> showPanel(panelVer));
+        menuBar.altaItem.addActionListener(e -> showPanel(panelAlta));
+        menuBar.acercaDeItem.addActionListener(e -> showPanel(panelAcercaDe));
     }
 
-    public void showPanelAcercaDe() {
-        setContentPane(panelAcercaDe);
-        revalidate();
-        repaint();
+    private void showPanel(JPanel panel) {
+        contentPane.removeAll();
+        contentPane.add(panel, BorderLayout.CENTER);
+        contentPane.revalidate();
+        contentPane.repaint();
     }
-
 }
+

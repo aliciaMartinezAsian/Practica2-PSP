@@ -5,10 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class FrmPanelAcercaDe extends JPanel {
+public class PanelAcercaDe extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public FrmPanelAcercaDe() {
+	public PanelAcercaDe() {
         setLayout(new BorderLayout());
         JTextArea infoArea = new JTextArea("Aplicación de Gestión de Empleados.\nAutor: Tu Nombre\nFecha: 2024");
         infoArea.setEditable(false);
