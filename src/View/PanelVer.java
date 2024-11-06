@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -8,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controller.CtrEmpleado;
 import Model.Empleado;
 
 public class PanelVer extends JPanel {
@@ -79,6 +79,8 @@ public class PanelVer extends JPanel {
         
         initListeners();
         
+        obtenerEmpleados();
+        
    
         if (!empleados.isEmpty()) mostrarEmpleado(0);
     }
@@ -88,6 +90,12 @@ public class PanelVer extends JPanel {
     	btnAnterior.addActionListener(e -> mostrarEmpleado(indiceActual - 1));
     	btnSiguiente.addActionListener(e -> mostrarEmpleado(indiceActual + 1));
     	btnUltimo.addActionListener(e -> mostrarEmpleado(empleados.size() - 1));
+    }
+    
+    public void obtenerEmpleados() {
+    	CtrEmpleado ctr = new CtrEmpleado();
+    	
+    	empleados = ctr.listaEmpleados();
     }
 
     public void mostrarEmpleado(int indice) {

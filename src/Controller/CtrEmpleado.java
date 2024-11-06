@@ -72,17 +72,11 @@ public class CtrEmpleado {
 	    public boolean estamosAlFinal() {
 	        return indiceActual == empleados.size(); // Indica si estamos en un "nuevo" registro
 	    }
+	    
+	    public ArrayList<Empleado> listaEmpleados(){
+	    	return empleados;
+	    }
 
-//		public void mostrarEmpleadoActual() {
-//
-//			// Mostrar el empleado actual
-//			Empleado empleado = getEmpleadoActual();
-//			framePrincipal.setEmpleadoData(empleado.getNombre(), empleado.getSueldo(), empleado.getSueldoMax(),empleado.getFechaNacimiento());
-//			framePrincipal.setAltaVisible(false);
-//
-//			// Desactivar/activar botones según la posición
-//			framePrincipal.setAnteriorEnabled(!esPrimerEmpleado());
-//			framePrincipal.setSiguienteEnabled(!esUltimoEmpleado());
-//		}
+
 
 }

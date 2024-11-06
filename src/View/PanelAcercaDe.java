@@ -10,7 +10,7 @@ public class PanelAcercaDe extends JPanel {
 
 	public PanelAcercaDe() {
         setLayout(new BorderLayout());
-        JTextArea infoArea = new JTextArea("Aplicación de Gestión de Empleados.\nAutor: Tu Nombre\nFecha: 2024");
+        JTextArea infoArea = new JTextArea("Aplicación de Gestión de Empleados.\nAutores: José Luis y Alicia\nFecha: 2024");
         infoArea.setEditable(false);
         add(infoArea, BorderLayout.CENTER);
     }
