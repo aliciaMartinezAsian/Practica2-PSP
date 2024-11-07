@@ -2,9 +2,11 @@ package View;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -33,6 +35,8 @@ public class PanelAlta extends JPanel {
        
         JLabel fecha = new JLabel("Fecha de nacimiento:");
         fechaField = new JTextField(20);
+        
+ 
         
         add(fecha);
         add(fechaField);
@@ -82,34 +86,52 @@ public class PanelAlta extends JPanel {
 	private void agregarEmpleado() {
         String nombre = nombreField.getText();
         String strSueldo = sueldoField.getText();
-        Integer sueldo = Integer.parseInt(strSueldo);
         String strSueldoMax = sueldoMaxField.getText();
-        Integer sueldoMax = Integer.parseInt(strSueldoMax);
         String strFecha = fechaField.getText();
         
         // Formato de la fecha
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
-        // Conversión de String a LocalDate
-        LocalDate fecha = LocalDate.parse(strFecha, formatter);
+        // Hacemos los parse dentro del trycatch para gestionar los errores
+        try {
+	        LocalDate fecha;
+	        try {
+	        	fecha = LocalDate.parse(strFecha, formatter);
+	        }catch(Exception e) {
+	        	throw new FechaNacimientoInvalidaException();
+	        }
+	        
+	        Integer sueldo;
+	        try{
+	        	sueldo = Integer.parseInt(strSueldo);
+	        }catch(Exception e) {
+	        	throw new SueldoInvalidoException();
+	        }
+	        Integer sueldoMax;
+	        try{
+	        	sueldoMax = Integer.parseInt(strSueldo);
+	        }catch(Exception e) {
+	        	throw new SueldoMaximoInvalidoException();
+	        }
         
-        CtrEmpleado ctr = new CtrEmpleado();
+
         Empleado nuevoEmpleado;
-		try {
+		
 			nuevoEmpleado = new Empleado(nombre, sueldo, sueldoMax, fecha);
-			ctr.agregarEmpleado(nuevoEmpleado);
+			CtrEmpleado.agregarEmpleado(nuevoEmpleado);
 		} catch (SueldoMaximoInvalidoException e) {
-			System.err.println("Sueldo máximo no válido");
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(this, "Sueldo Maximo invalido, \ndatos no guardados", "Error", JOptionPane.ERROR_MESSAGE);
+			
 		} catch (SueldoInvalidoException e1) {
-			System.err.println("Sueldo no válido");
-			System.out.println(e1.getMessage());
+			JOptionPane.showMessageDialog(this, "Sueldo invalido, \ndatos no guardados", "Error", JOptionPane.ERROR_MESSAGE);
+			
 		} catch (FechaNacimientoInvalidaException e2) {
-			System.err.println("Sueldo máximo no válido");
-			System.out.println(e2.getMessage());
+			JOptionPane.showMessageDialog(this, "Fecha de nacimiento invalida, \ndatos no guardados", "Error", JOptionPane.ERROR_MESSAGE);
+			
+		}finally {
+			limpiarCampos();
 		}
-        
-        limpiarCampos();
+
     }
 
     private void limpiarCampos() {

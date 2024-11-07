@@ -36,43 +36,17 @@ public class CtrEmpleado {
 	        }
 	    }
 
-	    public void reiniciarPosicionamiento() {
-	    	this.indiceActual=0;
-	    }
+
 	    
 	    public Empleado getEmpleadoActual() {
 	        return empleados.get(indiceActual);
 	    }
 
-	    public void siguienteEmpleado() {
-	        if (indiceActual < empleados.size()) {
-	            indiceActual++;
-	        }
-	    }
-
-	    public void anteriorEmpleado() {
-	        if (indiceActual > 0) {
-	            indiceActual--;
-	        }
-	    }
-
-	    public boolean esUltimoEmpleado() {
-	        return indiceActual == empleados.size();
-	    }
-
-	    public boolean esPrimerEmpleado() {
-	        return indiceActual == 0;
-	    }
-
-	    public void agregarEmpleado(Empleado empleado) {
+	    public static void agregarEmpleado(Empleado empleado) {
 	        empleados.add(empleado);
-	         // Posiciona en el nuevo empleado
+	         
 	    }
 
-	    public boolean estamosAlFinal() {
-	        return indiceActual == empleados.size(); // Indica si estamos en un "nuevo" registro
-	    }
-	    
 	    public ArrayList<Empleado> listaEmpleados(){
 	    	return empleados;
 	    }

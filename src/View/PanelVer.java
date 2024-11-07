@@ -17,6 +17,7 @@ public class PanelVer extends JPanel {
     private JButton btnPrimero, btnAnterior, btnSiguiente, btnUltimo;
     
     private JTextField nombreField, sueldoField, sueldoMaxField, fechaField;
+    private JLabel numEmple;
     
     public PanelVer() {
         empleados = new ArrayList<>();
@@ -77,12 +78,18 @@ public class PanelVer extends JPanel {
         btnAnterior.setBounds(230,125,90,27);
         btnUltimo.setBounds(330,125,90,27);
         
+        
         initListeners();
         
         obtenerEmpleados();
         
-   
+        numEmple = new JLabel("Empleado: "+(indiceActual+1)+" de "+empleados.size());
+        add(numEmple);
+        numEmple.setBounds(180,170,150,20);
+        
         if (!empleados.isEmpty()) mostrarEmpleado(0);
+        
+
     }
     
     private void initListeners() {
@@ -99,6 +106,12 @@ public class PanelVer extends JPanel {
     }
 
     public void mostrarEmpleado(int indice) {
+    	btnSiguiente.setEnabled(true);
+    	btnAnterior.setEnabled(true);
+    	
+    	if(indice==0) btnAnterior.setEnabled(false);
+    	if(indice==empleados.size()-1) btnSiguiente.setEnabled(false);
+    	
         if (indice >= 0 && indice < empleados.size()) {
             Empleado empleado = empleados.get(indice);
             nombreField.setText(empleado.getNombre());
@@ -106,6 +119,7 @@ public class PanelVer extends JPanel {
             sueldoMaxField.setText(String.valueOf(empleado.getSueldoMax()));
             fechaField.setText(String.valueOf(empleado.getFechaNacimiento()));
             indiceActual = indice;
+            numEmple.setText("Empleado: "+(indiceActual+1)+" de "+empleados.size());
         }
     }
 }

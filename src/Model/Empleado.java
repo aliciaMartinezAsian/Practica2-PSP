@@ -10,7 +10,7 @@ public class Empleado {
 	- Sueldo máximo, de tipo real.
 	- Otro de libre elección (para nosotros nombre).*/
 
-	private static int contadorEmpleados = 0; // Contador de empleados
+	public static int contadorEmpleados = 0; // Contador de empleados
 	private int numeroEmpleado; // Número de empleado
 	private double sueldo;
 	private double sueldoMax;
