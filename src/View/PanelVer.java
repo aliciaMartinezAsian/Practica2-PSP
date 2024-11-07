@@ -74,8 +74,8 @@ public class PanelVer extends JPanel {
         add(btnUltimo);
         
         btnPrimero.setBounds(30,125,90,27);
-        btnSiguiente.setBounds(130,125,90,27);
-        btnAnterior.setBounds(230,125,90,27);
+        btnSiguiente.setBounds(230,125,90,27);
+        btnAnterior.setBounds(130,125,90,27);
         btnUltimo.setBounds(330,125,90,27);
         
         
